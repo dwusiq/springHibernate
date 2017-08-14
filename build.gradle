@@ -18,7 +18,7 @@ List logger = [
         'org.apache.logging.log4j:log4j-web:2.1',
         'org.slf4j:jcl-over-slf4j:1.7.12'
 ]
-def spring_version="4.0.5.RELEASE"
+def spring_version="4.3.9.RELEASE"
 List spring =[
         "org.springframework:spring-core:$spring_version",
         "org.springframework:spring-beans:$spring_version",
@@ -31,16 +31,24 @@ List spring =[
         "org.springframework:spring-webmvc:$spring_version",
         "org.springframework:spring-test:$spring_version",
         //支持hibertant4的localsessionfactorybean
-        "org.springframework:spring-orm:4.3.9.RELEASE"
+        "org.springframework:spring-orm:$spring_version"
 ]
+
+List hibernate= [
+        /*入参校验支持包*/
+        "org.hibernate:hibernate-validator:5.4.1.Final",
+        /*hibernate jap支持*/
+        "org.hibernate:hibernate-entitymanager:4.3.9.Final"
+]
+
 
 List jackson = [
-        'com.fasterxml.jackson.core:jackson-core:2.4.3',
-        'com.fasterxml.jackson.core:jackson-databind:2.4.3',
-        'com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.4.3',
-        'net.sf.json-lib:json-lib:2.4:jdk15'
+        'com.fasterxml.jackson.core:jackson-core:2.8.8',
+        'com.fasterxml.jackson.core:jackson-databind:2.8.8',
+        'com.fasterxml.jackson.core:jackson-annotations:2.8.8',
+     //   'com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.4.3',
+      //  'net.sf.json-lib:json-lib:2.4:jdk15'
 ]
-
 List fastjson = ["com.alibaba:fastjson:1.2.33"]
 /*数据库连接支持包*/
 List commonsdbcp = ["commons-dbcp:commons-dbcp:1.4"]
@@ -52,10 +60,8 @@ List junit = ["junit:junit:4.12"]
 List mockito_core = ["org.mockito:mockito-core:2.8.47"]
 /*servlet支持jar包*/
 List servlet = ['javax.servlet:javax.servlet-api:3.1.0']
-/*入参校验支持包*/
-List validator = ['org.hibernate:hibernate-validator:5.4.1.Final']
 
 dependencies {
-    compile logger,spring,mybatis,springmybatis,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,validator
-    runtime logger,spring,mybatis,springmybatis,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,validator
+    compile logger,spring,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,hibernate
+    runtime logger,spring,commonsdbcp,mysql,jackson,fastjson,junit,mockito_core,servlet,hibernate
 }
